@@ -20,6 +20,7 @@ public class Response {
 	@JsonIgnoreProperties("responseData")
 	private ResponseData responseData;
 	@ManyToOne
+	@JsonIgnoreProperties(value = { "response" }, allowSetters = true)
 	private Survay survay;
 
 	public Response() {

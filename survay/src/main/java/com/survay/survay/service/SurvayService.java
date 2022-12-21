@@ -10,6 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.survay.survay.dto.PublishDTO;
+import com.survay.survay.dto.PublishDataDTO;
+import com.survay.survay.dto.PublishDataMapper;
+import com.survay.survay.dto.PublishMapper;
+import com.survay.survay.dto.ResponseDTO;
+import com.survay.survay.dto.ResponseDataDTO;
+import com.survay.survay.dto.SurvayDTO;
+import com.survay.survay.dto.SurvayMapper;
 import com.survay.survay.entity.Publish;
 import com.survay.survay.entity.PublishData;
 import com.survay.survay.entity.Response;
@@ -19,7 +27,6 @@ import com.survay.survay.repo.PublishDataRepo;
 import com.survay.survay.repo.ResponseDataRepo;
 import com.survay.survay.repo.ResponseRepo;
 import com.survay.survay.repo.Survayrepo;
-
 
 import jakarta.transaction.Transactional;
 
@@ -36,6 +43,15 @@ public class SurvayService {
 
 	@Autowired
 	private ResponseDataRepo responseDataRepo;
+	/*
+	 * @Autowired(required=true) private PublishDataMapper publishDataMapper;
+	 */
+
+	@Autowired
+	private SurvayMapper survayMapper;
+
+	@Autowired
+	private PublishMapper publishMapper;
 
 	static final Logger LOG = LoggerFactory.getLogger(SurvayService.class);
 
@@ -51,8 +67,8 @@ public class SurvayService {
 		List<Response> respList = survay.getResponse();
 		for (Response r : respList) {
 			responseRepo.save(r);
-			//ResponseData responseData = r.getResponseData();
-			//responseDataRepo.save(responseData);
+			// ResponseData responseData = r.getResponseData();
+			// responseDataRepo.save(responseData);
 		}
 		LOG.info("SurvayService::createSurvay::End");
 
@@ -95,22 +111,22 @@ public class SurvayService {
 		return allSurvay;
 	}
 
-	public PublishData getPublishDataBySurvayId(@PathVariable Long id) {
+	public PublishDataDTO getPublishDataBySurvayId(@PathVariable Long id) {
 
 		LOG.info("SurvayService::getPublishDataBySurvayId::Start");
 
 		Optional<Survay> survay = survayRepo.findById(id);
-		com.survay.survay.response.Survay survay1 = new com.survay.survay.response.Survay();
+		SurvayDTO survay1 = new SurvayDTO();
 		if (survay.isPresent()) {
-			survay1 = survay.get();
+			survay1 = survayMapper.toSurvayDTO(survay.get());
 		}
-		Publish publish = new Publish();
+		PublishDTO publish = new PublishDTO();
 		if (survay1.getPublish() != null) {
 			publish = survay1.getPublish();
 		}
 		LOG.info("id:{} , publish:{} ", id, publish);
 
-		PublishData publishData = new PublishData();
+		PublishDataDTO publishData = new PublishDataDTO();
 		if (publish.getPublishData() != null) {
 			publishData = publish.getPublishData();
 		}
@@ -122,22 +138,25 @@ public class SurvayService {
 
 	}
 
-	public List<ResponseData> getResposeDataBySurvayId(@PathVariable Long id) {
+	public List<ResponseDataDTO> getResposeDataBySurvayId(@PathVariable Long id) {
 
 		LOG.info("SurvayService::getResposeDataBySurvayId::Start");
 
 		Optional<Survay> survay = survayRepo.findById(id);
 		LOG.debug("id:{} , survay:{} ", id, survay);
-		Survay survay1 = new Survay();
+		
+		SurvayDTO survay1 = new SurvayDTO();
 		if (survay.isPresent()) {
-			survay1 = survay.get();
+			survay1 = survayMapper.toSurvayDTO(survay.get());
 		}
-		List<Response> list = new ArrayList<>();
+		
+		
+		List<ResponseDTO> list = new ArrayList<>();
 		if (survay1.getResponse() != null) {
 			list = survay1.getResponse();
 		}
-		List<ResponseData> reponseData = new ArrayList<>();
-		for (Response l : list) {
+		List<ResponseDataDTO> reponseData = new ArrayList<>();
+		for (ResponseDTO l : list) {
 			if (l == null)
 				continue;
 			reponseData.add(l.getResponseData());

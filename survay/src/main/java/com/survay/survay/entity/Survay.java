@@ -21,23 +21,23 @@ public class Survay {
 	private Long survayId;
 
 	@OneToOne(mappedBy = "survay",cascade = CascadeType.PERSIST,  fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("survayData")
+	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
 	private SurvayData survayData;
 
 	@OneToOne(mappedBy = "survay", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("publish")
+	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
 	private Publish publish;
 
 	@OneToMany(mappedBy = "survay", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("response")
+	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
 	private List<Response> response;
 
 	@OneToMany(mappedBy = "survay",cascade = CascadeType.PERSIST,  fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("survayUrl")
+	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
 	private List<SurvayURL> survayUrl;
 
 	@OneToOne(mappedBy = "survay", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("survayPassword")
+	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
 	private SurvayPassword survayPassword;
 
 	public Survay() {

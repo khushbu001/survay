@@ -2,6 +2,12 @@ package com.survay.survay.dto;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Component
 public class SurvayDTO {
 
 	private Long survayId;
@@ -9,7 +15,7 @@ public class SurvayDTO {
 	private SurvayDataDTO survayData;
 
 	private PublishDTO publish;
-
+	@JsonIgnore
 	private List<ResponseDTO> response;
 
 	private List<SurvayURLDTO> survayUrl;

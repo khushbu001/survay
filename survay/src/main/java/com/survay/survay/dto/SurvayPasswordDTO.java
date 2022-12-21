@@ -1,5 +1,8 @@
 package com.survay.survay.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SurvayPasswordDTO {
 
 	private Long passwordId;

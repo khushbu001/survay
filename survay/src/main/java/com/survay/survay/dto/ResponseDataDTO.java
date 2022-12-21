@@ -1,16 +1,18 @@
 package com.survay.survay.dto;
 
-import jakarta.persistence.OneToOne;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Component
 public class ResponseDataDTO {
 	private Long responseDataID;
 	private String data;
-	@OneToOne
+	@JsonIgnore
 	private ResponseDTO response;
 
 	public ResponseDataDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ResponseDataDTO(Long responseDataID, String data, ResponseDTO response) {

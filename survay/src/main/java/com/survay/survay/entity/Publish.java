@@ -19,6 +19,7 @@ public class Publish {
 	@JsonIgnoreProperties("publishData")
 	private PublishData publishData;
 	@OneToOne
+	@JsonIgnoreProperties(value = { "publish" }, allowSetters = true)
 	private Survay survay;
 
 	public Publish() {

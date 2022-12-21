@@ -1,12 +1,8 @@
 package com.survay.survay.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import org.springframework.stereotype.Component;
 
-@Entity
+@Component
 public class SurvayDataDTO {
 
 	private Long survayDataId;

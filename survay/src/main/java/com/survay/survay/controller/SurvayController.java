@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.survay.survay.dto.PublishDataDTO;
+import com.survay.survay.dto.ResponseDataDTO;
 import com.survay.survay.entity.PublishData;
 import com.survay.survay.entity.ResponseData;
 import com.survay.survay.entity.Survay;
@@ -24,7 +26,6 @@ import com.survay.survay.service.SurvayService;
 
 @RestController
 @ControllerAdvice
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1")
 public class SurvayController {
 
@@ -83,11 +84,11 @@ public class SurvayController {
 	}
 
 	@GetMapping(value = "/survay/response/{id}")
-	public ResponseEntity<List<ResponseData>> getResposeDataBySurvayId(@PathVariable Long id) {
+	public ResponseEntity<List<ResponseDataDTO>> getResposeDataBySurvayId(@PathVariable Long id) {
 
 		logger.info("SurvayController::getResposeDataBySurvayId::Start");
 
-		List<ResponseData> responseData = survayService.getResposeDataBySurvayId(id);
+		List<ResponseDataDTO> responseData = survayService.getResposeDataBySurvayId(id);
 
 		logger.debug("id:{} , responseData:{} ", id, responseData);
 		logger.info("SurvayController::getOneSurvay::End");
@@ -97,11 +98,11 @@ public class SurvayController {
 	}
 
 	@GetMapping(value = "/survay/publishdata/{id}")
-	public ResponseEntity<PublishData> getPublishDataBySurvayId(@PathVariable Long id) {
+	public ResponseEntity<PublishDataDTO> getPublishDataBySurvayId(@PathVariable Long id) {
 
 		logger.info("SurvayController::getPublishDataBySurvayId::Start");
 
-		PublishData publishData = survayService.getPublishDataBySurvayId(id);
+		PublishDataDTO publishData = survayService.getPublishDataBySurvayId(id);
 
 		logger.debug("id:{} , publishData:{} ", id, publishData);
 		logger.info("SurvayController::getPublishDataBySurvayId::End");

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import com.survay.survay.entity.Survay;
 import com.survay.survay.entity.SurvayURL;
 
 @Mapper(componentModel = "spring")

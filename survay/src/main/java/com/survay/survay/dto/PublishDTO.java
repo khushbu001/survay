@@ -1,8 +1,9 @@
 package com.survay.survay.dto;
 
-import com.survay.survay.entity.Survay;
-import com.survay.survay.response.PublishDataResponse;
+import org.springframework.stereotype.Component;
 
+import com.survay.survay.entity.Survay;
+@Component
 public class PublishDTO {
 
 	private Long publishId;

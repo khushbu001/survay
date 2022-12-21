@@ -1,5 +1,7 @@
 package com.survay.survay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,7 @@ public class SurvayURL {
 
 	private String data;
 	@ManyToOne
+	@JsonIgnoreProperties(value = { "survayURL" }, allowSetters = true)
 	private Survay survay;
 
 	public SurvayURL() {

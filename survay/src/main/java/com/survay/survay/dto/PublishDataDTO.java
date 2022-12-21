@@ -1,19 +1,14 @@
 package com.survay.survay.dto;
 
-import com.survay.survay.entity.Publish;
+import org.springframework.stereotype.Component;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-
+@Component
 public class PublishDataDTO {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 
 	private String data;
-	@OneToOne
+	
 	private PublishDTO publish;
 
 	public PublishDataDTO() {
