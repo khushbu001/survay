@@ -26,6 +26,7 @@ import com.survay.survay.entity.Response;
 import com.survay.survay.entity.ResponseData;
 import com.survay.survay.entity.Survay;
 import com.survay.survay.repo.PublishDataRepo;
+import com.survay.survay.repo.PublishRepo;
 import com.survay.survay.repo.ResponseDataRepo;
 import com.survay.survay.repo.ResponseRepo;
 import com.survay.survay.repo.Survayrepo;
@@ -45,18 +46,9 @@ public class SurvayService {
 
 	@Autowired
 	private ResponseDataRepo responseDataRepo;
-	/*
-	 * @Autowired(required=true) private PublishDataMapper publishDataMapper;
-	 */
 
 	@Autowired
-	private SurvayMapper survayMapper;
-
-	@Autowired
-	private PublishMapper publishMapper;
-
-	@Autowired
-	private ResponseDataMapper responseDataMapper;
+	private PublishRepo publishRepo;
 
 	static final Logger LOG = LoggerFactory.getLogger(SurvayService.class);
 
@@ -116,29 +108,33 @@ public class SurvayService {
 		return allSurvay;
 	}
 
-	public PublishData getPublishDataBySurvayId(@PathVariable Long id) {
+	public PublishData getPublishDataBySurvayId1(@PathVariable Long id) {
 
 		LOG.info("SurvayService::getPublishDataBySurvayId::Start");
 
-		Optional<Survay> survay = survayRepo.findById(id);
+		Optional<Survay> survay = survayRepo.getOneSurvayById(id);
 		Survay survay1 = new Survay();
 		if (survay.isPresent()) {
 			survay1 = survay.get();
 		}
-		//LOG.info("id:{} , survay1:{} ", id, survay1);
+		// LOG.info("id:{} , survay1:{} ", id, survay1);
+		if (survay1.getPublish() == null) {
+			System.out.println(survay1.toString());
+
+		}
 
 		Publish publish = new Publish();
 		if (survay1.getPublish() != null) {
 			LOG.info("id:{} , publish1:{} ", id, publish);
 			publish.setPublishData(survay1.getPublish().getPublishData());
 		}
-		//LOG.info("id:{} , publish2:{} ", id, publish);
+		// LOG.info("id:{} , publish2:{} ", id, publish);
 
 		PublishData publishData = new PublishData();
 		if (publish.getPublishData() != null) {
 			publishData = publish.getPublishData();
 		}
-		//LOG.info("id:{} , publishData:{} ", id, publishData);
+		// LOG.info("id:{} , publishData:{} ", id, publishData);
 
 		LOG.info("SurvayService::getPublishDataBySurvayId::End");
 
@@ -174,6 +170,29 @@ public class SurvayService {
 		LOG.info("SurvayController::getOneSurvay::End");
 
 		return reponseData;
+
+	}
+
+	public PublishData getPublishDataBySurvayId(@PathVariable Long id) {
+
+		LOG.info("SurvayService::getPublishDataBySurvayId::Start");
+
+		Optional<Publish> publish = publishRepo.getOnePublishById(id);
+		Publish publish1 = new Publish();
+		if (publish.isPresent()) {
+			publish1 = publish.get();
+		}
+
+		PublishData publishData = new PublishData();
+		if (publish1.getPublishData() != null) {
+			publishData = publish1.getPublishData();
+			publishData.setId(publish1.getPublishData().getId());
+			publishData.setData(publish1.getPublishData().getData());
+		}
+
+		LOG.info("SurvayService::getPublishDataBySurvayId::End");
+
+		return publishData;
 
 	}
 

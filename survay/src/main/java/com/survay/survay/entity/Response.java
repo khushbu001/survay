@@ -18,7 +18,7 @@ public class Response {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long responseId;
 	@OneToOne(mappedBy = "response", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("responseData")
+	@JsonIgnoreProperties("response")
 	private ResponseData responseData;
 	@ManyToOne
 	@JsonIgnore
@@ -61,9 +61,7 @@ public class Response {
 
 	@Override
 	public String toString() {
-		return "Response [responseId=" + responseId + ", responseData=" + responseData + ", survay=" + survay + "]";
+		return "Response [responseId=" + responseId + ", responseData=" + responseData + "]";
 	}
-
-	
 
 }

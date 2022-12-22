@@ -17,7 +17,6 @@ public class SurvayPassword {
 	private String password;
 	@OneToOne
 	@JsonIgnoreProperties(value = { "survayPassword" }, allowSetters = true)
-
 	private Survay survay;
 
 	public SurvayPassword() {
@@ -57,7 +56,7 @@ public class SurvayPassword {
 
 	@Override
 	public String toString() {
-		return "SurvayPassword [passwordId=" + passwordId + ", password=" + password + ", survay=" + survay + "]";
+		return "SurvayPassword [passwordId=" + passwordId + ", password=" + password + "]";
 	}
 
 }

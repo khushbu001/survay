@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /*
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-12-22T14:30:54+0530",
+    date = "2022-12-22T21:09:48+0530",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.4.1 (Eclipse Adoptium)"
 )
 */
@@ -142,7 +142,6 @@ public class SurvayURLMapperImpl implements SurvayURLMapper {
 
         PublishData publishData = new PublishData();
 
-        publishData.setPublishId( publishDataDTO.getPublishId() );
         publishData.setData( publishDataDTO.getData() );
         publishData.setPublish( publishDTOToPublish( publishDataDTO.getPublish() ) );
 

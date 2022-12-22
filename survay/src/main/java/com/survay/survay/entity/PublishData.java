@@ -23,19 +23,19 @@ public class PublishData {
 		super();
 	}
 
-	public PublishData(Long publishId, String data, Publish publish) {
+	public PublishData(Long id, String data, Publish publish) {
 		super();
-		this.id = publishId;
+		this.id = id;
 		this.data = data;
 		this.publish = publish;
 	}
 
-	public Long getPublishId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setPublishId(Long publishId) {
-		this.id = publishId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getData() {
@@ -56,7 +56,7 @@ public class PublishData {
 
 	@Override
 	public String toString() {
-		return "PublishData [publishId=" + id + ", data=" + data + ", publish=" + publish + "]";
+		return "PublishData [publishId=" + id + ", data=" + data + "]";
 	}
 
 }

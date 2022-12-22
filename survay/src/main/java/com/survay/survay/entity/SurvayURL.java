@@ -56,9 +56,9 @@ public class SurvayURL {
 		this.survay = survay;
 	}
 
-	@Override
-	public String toString() {
-		return "SurvayURL [survayUrlId=" + survayUrlId + ", data=" + data + ", survay=" + survay + "]";
-	}
+	/*
+	 * @Override public String toString() { return "SurvayURL [survayUrlId=" +
+	 * survayUrlId + ", data=" + data + ", survay=" + survay + "]"; }
+	 */
 
 }

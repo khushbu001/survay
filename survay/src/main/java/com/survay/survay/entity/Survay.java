@@ -20,36 +20,36 @@ public class Survay {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long survayId;
 
-	@OneToOne(mappedBy = "survay",cascade = CascadeType.PERSIST,  fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
+	@OneToOne(mappedBy = "survay", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = { "survay" }, allowSetters = true)
 	private SurvayData survayData;
 
 	@OneToOne(mappedBy = "survay", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
+	@JsonIgnoreProperties(value = { "survay" }, allowSetters = true)
 	private Publish publish;
 
 	@OneToMany(mappedBy = "survay", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
+	@JsonIgnoreProperties(value = { "survay" }, allowSetters = true)
 	private List<Response> response;
 
-	@OneToMany(mappedBy = "survay",cascade = CascadeType.PERSIST,  fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
+	@OneToMany(mappedBy = "survay", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = { "survay" }, allowSetters = true)
 	private List<SurvayURL> survayUrl;
 
 	@OneToOne(mappedBy = "survay", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"survay"}, allowSetters=true)
+	@JsonIgnoreProperties(value = { "survay" }, allowSetters = true)
 	private SurvayPassword survayPassword;
 
 	public Survay() {
 		super();
 	}
 
-	public Survay(Long survayId, SurvayData survayData, Publish publishId, List<Response> response,
+	public Survay(Long survayId, SurvayData survayData, Publish publish, List<Response> response,
 			List<SurvayURL> survayUrl, SurvayPassword survayPassword) {
 		super();
 		this.survayId = survayId;
 		this.survayData = survayData;
-		this.publish = publishId;
+		this.publish = publish;
 		this.response = response;
 		this.survayUrl = survayUrl;
 		this.survayPassword = survayPassword;
@@ -75,8 +75,8 @@ public class Survay {
 		return publish;
 	}
 
-	public void setPublish(Publish publishId) {
-		this.publish = publishId;
+	public void setPublish(Publish publish) {
+		this.publish = publish;
 	}
 
 	public List<Response> getResponse() {

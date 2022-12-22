@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.survay.survay.SurvayApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.77 s - in com.survay.survay.SurvayApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.093 s - in com.survay.survay.SurvayApplicationTests

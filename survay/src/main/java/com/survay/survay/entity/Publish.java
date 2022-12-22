@@ -63,4 +63,10 @@ public class Publish {
 		return "Publish [publishId=" + publishId + ", publishData=" + publishData + ", survay=" + survay + "]";
 	}
 
+	/*
+	 * @Override public String toString() { return "Publish [publishId=" + publishId
+	 * + ", publishData=" + publishData + "]"; }
+	 */
+	
+
 }
