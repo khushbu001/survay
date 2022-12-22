@@ -1,5 +1,6 @@
 package com.survay.survay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -20,7 +21,7 @@ public class Response {
 	@JsonIgnoreProperties("responseData")
 	private ResponseData responseData;
 	@ManyToOne
-	@JsonIgnoreProperties(value = { "response" }, allowSetters = true)
+	@JsonIgnore
 	private Survay survay;
 
 	public Response() {
@@ -62,5 +63,7 @@ public class Response {
 	public String toString() {
 		return "Response [responseId=" + responseId + ", responseData=" + responseData + ", survay=" + survay + "]";
 	}
+
+	
 
 }

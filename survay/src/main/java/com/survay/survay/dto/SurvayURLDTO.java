@@ -12,7 +12,6 @@ public class SurvayURLDTO {
 
 	public SurvayURLDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public SurvayURLDTO(Long survayUrlId, String data, SurvayDTO survay) {

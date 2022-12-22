@@ -1,5 +1,7 @@
 package com.survay.survay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +16,7 @@ public class PublishData {
 
 	private String data;
 	@OneToOne
+	@JsonIgnore
 	private Publish publish;
 
 	public PublishData() {

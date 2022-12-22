@@ -84,11 +84,11 @@ public class SurvayController {
 	}
 
 	@GetMapping(value = "/survay/response/{id}")
-	public ResponseEntity<List<ResponseDataDTO>> getResposeDataBySurvayId(@PathVariable Long id) {
+	public ResponseEntity<List<ResponseData>> getResposeDataBySurvayId(@PathVariable Long id) {
 
 		logger.info("SurvayController::getResposeDataBySurvayId::Start");
 
-		List<ResponseDataDTO> responseData = survayService.getResposeDataBySurvayId(id);
+		List<ResponseData> responseData = survayService.getResposeDataBySurvayId(id);
 
 		logger.debug("id:{} , responseData:{} ", id, responseData);
 		logger.info("SurvayController::getOneSurvay::End");
@@ -98,11 +98,11 @@ public class SurvayController {
 	}
 
 	@GetMapping(value = "/survay/publishdata/{id}")
-	public ResponseEntity<PublishDataDTO> getPublishDataBySurvayId(@PathVariable Long id) {
+	public ResponseEntity<PublishData> getPublishDataBySurvayId(@PathVariable Long id) {
 
 		logger.info("SurvayController::getPublishDataBySurvayId::Start");
 
-		PublishDataDTO publishData = survayService.getPublishDataBySurvayId(id);
+		PublishData publishData = survayService.getPublishDataBySurvayId(id);
 
 		logger.debug("id:{} , publishData:{} ", id, publishData);
 		logger.info("SurvayController::getPublishDataBySurvayId::End");

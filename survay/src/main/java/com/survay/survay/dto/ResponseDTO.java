@@ -8,8 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ResponseDTO {
 
 	private Long responseId;
-	@JsonIgnore
-	private ResponseDataDTO responseData;
+	
 	@JsonIgnore
 	private SurvayDTO survay;
 
@@ -17,10 +16,9 @@ public class ResponseDTO {
 		super();
 	}
 
-	public ResponseDTO(Long responseId, ResponseDataDTO responseData, SurvayDTO survay) {
+	public ResponseDTO(Long responseId, SurvayDTO survay) {
 		super();
 		this.responseId = responseId;
-		this.responseData = responseData;
 		this.survay = survay;
 	}
 
@@ -32,13 +30,7 @@ public class ResponseDTO {
 		this.responseId = responseId;
 	}
 
-	public ResponseDataDTO getResponseData() {
-		return responseData;
-	}
-
-	public void setResponseData(ResponseDataDTO responseData) {
-		this.responseData = responseData;
-	}
+	
 
 	public SurvayDTO getSurvay() {
 		return survay;
@@ -50,7 +42,7 @@ public class ResponseDTO {
 
 	@Override
 	public String toString() {
-		return "Response [responseId=" + responseId + ", responseData=" + responseData + ", survay=" + survay + "]";
+		return "Response [responseId=" + responseId + ", survay=" + survay + "]";
 	}
 
 }

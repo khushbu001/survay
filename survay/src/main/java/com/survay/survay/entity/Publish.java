@@ -1,5 +1,6 @@
 package com.survay.survay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -16,10 +17,10 @@ public class Publish {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long publishId;
 	@OneToOne(mappedBy = "publish", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("publishData")
+	@JsonIgnoreProperties("publish")
 	private PublishData publishData;
 	@OneToOne
-	@JsonIgnoreProperties(value = { "publish" }, allowSetters = true)
+	@JsonIgnore
 	private Survay survay;
 
 	public Publish() {

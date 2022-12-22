@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 /*
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-12-21T22:25:49+0530",
+    date = "2022-12-22T14:30:53+0530",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.4.1 (Eclipse Adoptium)"
 )
 */
@@ -93,19 +93,6 @@ public class ResponseDataMapperImpl implements ResponseDataMapper {
         return publishDTO;
     }
 
-    protected List<ResponseDTO> responseListToResponseDTOList(List<Response> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<ResponseDTO> list1 = new ArrayList<ResponseDTO>( list.size() );
-        for ( Response response : list ) {
-            list1.add( responseToResponseDTO( response ) );
-        }
-
-        return list1;
-    }
-
     protected SurvayURLDTO survayURLToSurvayURLDTO(SurvayURL survayURL) {
         if ( survayURL == null ) {
             return null;
@@ -157,7 +144,6 @@ public class ResponseDataMapperImpl implements ResponseDataMapper {
         survayDTO.setSurvayId( survay.getSurvayId() );
         survayDTO.setSurvayData( survayDataToSurvayDataDTO( survay.getSurvayData() ) );
         survayDTO.setPublish( publishToPublishDTO( survay.getPublish() ) );
-        survayDTO.setResponse( responseListToResponseDTOList( survay.getResponse() ) );
         survayDTO.setSurvayUrl( survayURLListToSurvayURLDTOList( survay.getSurvayUrl() ) );
         survayDTO.setSurvayPassword( survayPasswordToSurvayPasswordDTO( survay.getSurvayPassword() ) );
 
@@ -172,7 +158,6 @@ public class ResponseDataMapperImpl implements ResponseDataMapper {
         ResponseDTO responseDTO = new ResponseDTO();
 
         responseDTO.setResponseId( response.getResponseId() );
-        responseDTO.setResponseData( toResponseDataDTO( response.getResponseData() ) );
         responseDTO.setSurvay( survayToSurvayDTO( response.getSurvay() ) );
 
         return responseDTO;
@@ -218,19 +203,6 @@ public class ResponseDataMapperImpl implements ResponseDataMapper {
         publish.setSurvay( publishDTO.getSurvay() );
 
         return publish;
-    }
-
-    protected List<Response> responseDTOListToResponseList(List<ResponseDTO> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<Response> list1 = new ArrayList<Response>( list.size() );
-        for ( ResponseDTO responseDTO : list ) {
-            list1.add( responseDTOToResponse( responseDTO ) );
-        }
-
-        return list1;
     }
 
     protected SurvayURL survayURLDTOToSurvayURL(SurvayURLDTO survayURLDTO) {
@@ -284,7 +256,6 @@ public class ResponseDataMapperImpl implements ResponseDataMapper {
         survay.setSurvayId( survayDTO.getSurvayId() );
         survay.setSurvayData( survayDataDTOToSurvayData( survayDTO.getSurvayData() ) );
         survay.setPublish( publishDTOToPublish( survayDTO.getPublish() ) );
-        survay.setResponse( responseDTOListToResponseList( survayDTO.getResponse() ) );
         survay.setSurvayUrl( survayURLDTOListToSurvayURLList( survayDTO.getSurvayUrl() ) );
         survay.setSurvayPassword( survayPasswordDTOToSurvayPassword( survayDTO.getSurvayPassword() ) );
 
@@ -299,7 +270,6 @@ public class ResponseDataMapperImpl implements ResponseDataMapper {
         Response response = new Response();
 
         response.setResponseId( responseDTO.getResponseId() );
-        response.setResponseData( toResponseData( responseDTO.getResponseData() ) );
         response.setSurvay( survayDTOToSurvay( responseDTO.getSurvay() ) );
 
         return response;

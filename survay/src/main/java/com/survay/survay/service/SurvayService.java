@@ -16,6 +16,8 @@ import com.survay.survay.dto.PublishDataMapper;
 import com.survay.survay.dto.PublishMapper;
 import com.survay.survay.dto.ResponseDTO;
 import com.survay.survay.dto.ResponseDataDTO;
+import com.survay.survay.dto.ResponseDataMapper;
+import com.survay.survay.dto.ResponseMapper;
 import com.survay.survay.dto.SurvayDTO;
 import com.survay.survay.dto.SurvayMapper;
 import com.survay.survay.entity.Publish;
@@ -52,6 +54,9 @@ public class SurvayService {
 
 	@Autowired
 	private PublishMapper publishMapper;
+
+	@Autowired
+	private ResponseDataMapper responseDataMapper;
 
 	static final Logger LOG = LoggerFactory.getLogger(SurvayService.class);
 
@@ -111,26 +116,29 @@ public class SurvayService {
 		return allSurvay;
 	}
 
-	public PublishDataDTO getPublishDataBySurvayId(@PathVariable Long id) {
+	public PublishData getPublishDataBySurvayId(@PathVariable Long id) {
 
 		LOG.info("SurvayService::getPublishDataBySurvayId::Start");
 
 		Optional<Survay> survay = survayRepo.findById(id);
-		SurvayDTO survay1 = new SurvayDTO();
+		Survay survay1 = new Survay();
 		if (survay.isPresent()) {
-			survay1 = survayMapper.toSurvayDTO(survay.get());
+			survay1 = survay.get();
 		}
-		PublishDTO publish = new PublishDTO();
-		if (survay1.getPublish() != null) {
-			publish = survay1.getPublish();
-		}
-		LOG.info("id:{} , publish:{} ", id, publish);
+		//LOG.info("id:{} , survay1:{} ", id, survay1);
 
-		PublishDataDTO publishData = new PublishDataDTO();
+		Publish publish = new Publish();
+		if (survay1.getPublish() != null) {
+			LOG.info("id:{} , publish1:{} ", id, publish);
+			publish.setPublishData(survay1.getPublish().getPublishData());
+		}
+		//LOG.info("id:{} , publish2:{} ", id, publish);
+
+		PublishData publishData = new PublishData();
 		if (publish.getPublishData() != null) {
 			publishData = publish.getPublishData();
 		}
-		LOG.info("id:{} , publishData:{} ", id, publishData);
+		//LOG.info("id:{} , publishData:{} ", id, publishData);
 
 		LOG.info("SurvayService::getPublishDataBySurvayId::End");
 
@@ -138,25 +146,25 @@ public class SurvayService {
 
 	}
 
-	public List<ResponseDataDTO> getResposeDataBySurvayId(@PathVariable Long id) {
+	public List<ResponseData> getResposeDataBySurvayId(@PathVariable Long id) {
 
 		LOG.info("SurvayService::getResposeDataBySurvayId::Start");
 
 		Optional<Survay> survay = survayRepo.findById(id);
 		LOG.debug("id:{} , survay:{} ", id, survay);
-		
-		SurvayDTO survay1 = new SurvayDTO();
+
+		Survay survay1 = new Survay();
 		if (survay.isPresent()) {
-			survay1 = survayMapper.toSurvayDTO(survay.get());
+			survay1 = survay.get();
 		}
-		
-		
-		List<ResponseDTO> list = new ArrayList<>();
+
+		List<Response> list = new ArrayList<>();
 		if (survay1.getResponse() != null) {
-			list = survay1.getResponse();
+			list.addAll(survay1.getResponse());
 		}
-		List<ResponseDataDTO> reponseData = new ArrayList<>();
-		for (ResponseDTO l : list) {
+		List<ResponseData> reponseData = new ArrayList<>();
+
+		for (Response l : list) {
 			if (l == null)
 				continue;
 			reponseData.add(l.getResponseData());

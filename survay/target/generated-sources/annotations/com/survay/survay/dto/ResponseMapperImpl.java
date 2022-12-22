@@ -3,7 +3,6 @@ package com.survay.survay.dto;
 import com.survay.survay.entity.Publish;
 import com.survay.survay.entity.PublishData;
 import com.survay.survay.entity.Response;
-import com.survay.survay.entity.ResponseData;
 import com.survay.survay.entity.Survay;
 import com.survay.survay.entity.SurvayData;
 import com.survay.survay.entity.SurvayPassword;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
 /*
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-12-21T22:25:50+0530",
+    date = "2022-12-22T14:30:54+0530",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.4.1 (Eclipse Adoptium)"
 )
 */
@@ -31,7 +30,6 @@ public class ResponseMapperImpl implements ResponseMapper {
         ResponseDTO responseDTO = new ResponseDTO();
 
         responseDTO.setResponseId( response.getResponseId() );
-        responseDTO.setResponseData( responseDataToResponseDataDTO( response.getResponseData() ) );
         responseDTO.setSurvay( survayToSurvayDTO( response.getSurvay() ) );
 
         return responseDTO;
@@ -60,24 +58,9 @@ public class ResponseMapperImpl implements ResponseMapper {
         Response response = new Response();
 
         response.setResponseId( responseDTO.getResponseId() );
-        response.setResponseData( responseDataDTOToResponseData( responseDTO.getResponseData() ) );
         response.setSurvay( survayDTOToSurvay( responseDTO.getSurvay() ) );
 
         return response;
-    }
-
-    protected ResponseDataDTO responseDataToResponseDataDTO(ResponseData responseData) {
-        if ( responseData == null ) {
-            return null;
-        }
-
-        ResponseDataDTO responseDataDTO = new ResponseDataDTO();
-
-        responseDataDTO.setResponseDataID( responseData.getResponseDataID() );
-        responseDataDTO.setData( responseData.getData() );
-        responseDataDTO.setResponse( toResponseDTO( responseData.getResponse() ) );
-
-        return responseDataDTO;
     }
 
     protected SurvayDataDTO survayDataToSurvayDataDTO(SurvayData survayData) {
@@ -158,25 +141,10 @@ public class ResponseMapperImpl implements ResponseMapper {
         survayDTO.setSurvayId( survay.getSurvayId() );
         survayDTO.setSurvayData( survayDataToSurvayDataDTO( survay.getSurvayData() ) );
         survayDTO.setPublish( publishToPublishDTO( survay.getPublish() ) );
-        survayDTO.setResponse( toResponseDTOs( survay.getResponse() ) );
         survayDTO.setSurvayUrl( survayURLListToSurvayURLDTOList( survay.getSurvayUrl() ) );
         survayDTO.setSurvayPassword( survayPasswordToSurvayPasswordDTO( survay.getSurvayPassword() ) );
 
         return survayDTO;
-    }
-
-    protected ResponseData responseDataDTOToResponseData(ResponseDataDTO responseDataDTO) {
-        if ( responseDataDTO == null ) {
-            return null;
-        }
-
-        ResponseData responseData = new ResponseData();
-
-        responseData.setResponseDataID( responseDataDTO.getResponseDataID() );
-        responseData.setData( responseDataDTO.getData() );
-        responseData.setResponse( toResponse( responseDataDTO.getResponse() ) );
-
-        return responseData;
     }
 
     protected SurvayData survayDataDTOToSurvayData(SurvayDataDTO survayDataDTO) {
@@ -219,19 +187,6 @@ public class ResponseMapperImpl implements ResponseMapper {
         publish.setSurvay( publishDTO.getSurvay() );
 
         return publish;
-    }
-
-    protected List<Response> responseDTOListToResponseList(List<ResponseDTO> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<Response> list1 = new ArrayList<Response>( list.size() );
-        for ( ResponseDTO responseDTO : list ) {
-            list1.add( toResponse( responseDTO ) );
-        }
-
-        return list1;
     }
 
     protected SurvayURL survayURLDTOToSurvayURL(SurvayURLDTO survayURLDTO) {
@@ -285,7 +240,6 @@ public class ResponseMapperImpl implements ResponseMapper {
         survay.setSurvayId( survayDTO.getSurvayId() );
         survay.setSurvayData( survayDataDTOToSurvayData( survayDTO.getSurvayData() ) );
         survay.setPublish( publishDTOToPublish( survayDTO.getPublish() ) );
-        survay.setResponse( responseDTOListToResponseList( survayDTO.getResponse() ) );
         survay.setSurvayUrl( survayURLDTOListToSurvayURLList( survayDTO.getSurvayUrl() ) );
         survay.setSurvayPassword( survayPasswordDTOToSurvayPassword( survayDTO.getSurvayPassword() ) );
 

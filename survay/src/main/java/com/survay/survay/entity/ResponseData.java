@@ -1,5 +1,7 @@
 package com.survay.survay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +15,7 @@ public class ResponseData {
 	private Long responseDataID;
 	private String data;
 	@OneToOne
+	@JsonIgnore
 	private Response response;
 
 	public ResponseData() {
@@ -53,7 +56,7 @@ public class ResponseData {
 
 	@Override
 	public String toString() {
-		return "ResponseData [responseDataID=" + responseDataID + ", data=" + data + ", response=" + response + "]";
+		return "ResponseData [responseDataID=" + responseDataID + ", data=" + data + "]";
 	}
 
 }
